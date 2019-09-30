@@ -10,6 +10,8 @@ gem 'pg'
 
 gem 'devise'
 
+gem 'carrierwave', '~> 2.0'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
