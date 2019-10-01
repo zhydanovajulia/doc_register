@@ -1,11 +1,21 @@
 class DocumentsController < ApplicationController
 
+  before_action :find_document, only: [:edit, :show, :update, :destroy]
+
   def create
     @document = current_user.documents.new permit_params
     if @document.save
       redirect_to documents_path
     else
       render :new
+    end
+  end
+
+  def update
+    if @document.update permit_params
+      redirect_to document_path @document
+    else
+      render :edit
     end
   end
 
@@ -17,19 +27,25 @@ class DocumentsController < ApplicationController
     @documents = current_user.documents
   end
 
+
   def show
-    @document = Document.find params[:id]
+  end
+
+  def edit
   end
 
   def destroy
-    @document = Document.find params[:id]
-    @document.delete
+    @document.destroy
     redirect_to documents_path
   end
 
   private
 
   def permit_params
-    params.require(:document).permit(:name, :title, :description, attachments: [])
+    params.require(:document).permit(:name, :title, :description, remove_files: [], attachments: [])
+  end
+
+  def find_document
+    @document = Document.find params[:id]
   end
 end

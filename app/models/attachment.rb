@@ -3,4 +3,8 @@ class Attachment < ApplicationRecord
 
   belongs_to :attachable, polymorphic: true
 
+  def file_name
+    data.identifier
+  end
+
 end

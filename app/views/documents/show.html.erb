@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-body">
+    <p class="card-title"><%= @document.name %>
+      <small class="card-subtitle mb-2 text-muted"><%= @document.created_at %></small>
+    </p>
+
+    <h2 class="card-title"><%= @document.title %></h2>
+    <p class="card-text"><%= @document.description %></p>
+
+    <% @document.attachments.each do |file| %>
+      <p>
+        <small class="card-subtitle mb-2 text-muted">
+          <%= file.data.identifier %>
+        </small>
+      </p>
+    <% end %>
+    <%= link_to "Delete", document_path(@document), method: :delete, class: "card-link" , data: { confirm: 'Are you sure?' }%>
+    <%= link_to "Edit", edit_document_path(@document), class: "card-link" %>
+
+  </div>
+</div>

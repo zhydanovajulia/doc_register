@@ -1,0 +1,20 @@
+<h3>My Documents</h3>
+
+<div class="list-group">
+
+  <% @documents.each do |doc| %>
+
+    <div class="list-group-item">
+
+      <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= link_to doc.title[0..10], document_path(doc) %></h5>
+          <small><%= doc.created_at %></small>
+      </div>
+
+      <p class="mb-1"><%= doc.description[0..100] %></p>
+
+      <small></small>
+    </div>
+
+  <% end %>
+</div>
