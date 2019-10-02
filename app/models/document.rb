@@ -15,8 +15,7 @@ class Document < ApplicationRecord
   end
 
   def remove_files= file_ids
-    ids = file_ids.map { |id| id.present? }
-
+    ids = file_ids.reject(&:empty?)
     self.attachments.where(id: ids).delete_all if ids.any?
   end
 

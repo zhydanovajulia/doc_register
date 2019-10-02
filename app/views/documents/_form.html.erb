@@ -1,5 +1,6 @@
 
-<%= form_with model: @document do |f| %>
+<%= form_with model: @document, local: true do |f| %>
+
   <%= render 'application/errors', obj: @document %>
 
   <div class="form-group">
