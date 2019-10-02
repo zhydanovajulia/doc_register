@@ -10,7 +10,7 @@
     <% @document.attachments.each do |file| %>
       <p>
         <small class="card-subtitle mb-2 text-muted">
-          <%= file.data.identifier %>
+          <%= link_to file.file_name, download_document_path({file_path: file.full_path}), method: :post %>
         </small>
       </p>
     <% end %>

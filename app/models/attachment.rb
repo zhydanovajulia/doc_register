@@ -7,4 +7,8 @@ class Attachment < ApplicationRecord
     data.identifier
   end
 
+  def full_path
+    data.file.file
+  end
+
 end
