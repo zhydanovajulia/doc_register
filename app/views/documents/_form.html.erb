@@ -18,7 +18,17 @@
   </div>
 
   <% if @document.attachments.any? %>
-    <%= f.collection_check_boxes(:remove_files, @document.attachments, :id, :file_name) %>
+    <%= f.collection_check_boxes(:remove_files, @document.attachments, :id, :file_name) do |a|%>
+      <div class="input-group mb-3">
+        <div class="btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-light small">
+            <%= a.check_box %>
+            Delete
+          </label>
+          <%= a.object.file_name %>
+        </div>
+      </div>
+   <% end %>
  <% end %>
 
   <div class="form-group">
@@ -26,7 +36,7 @@
     <%= f.file_field :attachments, multiple: true, class: "form-control-file" %>
   </div>
 
-  <%= f.submit "Save", class: "btn btn-info" %>
+  <%= f.submit "Save", class: "btn btn-primary" %>
   <%= link_to "Cancel", :back, class: "btn btn-secondary" %>
 
 <% end %>
