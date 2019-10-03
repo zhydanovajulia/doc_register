@@ -13,7 +13,7 @@
           <%= doc.description.truncate(30) %>
         </div>
         <div class="col-sm-2">
-          <small><%= doc.created_at %></small>
+          <small><%= time_ago_in_words(doc.created_at) %></small>
         </div>
       </div>
     </div>
