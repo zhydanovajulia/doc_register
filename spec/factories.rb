@@ -3,7 +3,7 @@ FactoryBot.define do
   file_pdf = Rails.root.join("spec/support/story.pdf").to_s
 
   factory :user do
-    email { "qwe@qwe.qwe" }
+    sequence(:email) { |n| "qwe#{n}@qwe.qwe" }
     password { "epyfnm" }
   end
 
