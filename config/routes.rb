@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :documents
-  resource :download_document, only: :create
+  resources :attachments, only: :show
 
   root to: "documents#index"
 end

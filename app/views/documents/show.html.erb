@@ -16,7 +16,7 @@
 
     <% @document.attachments.each do |file| %>
       <small class="card-link mb-2 text-muted">
-        <%= link_to file.file_name, download_document_path({file_path: file.full_path}), method: :post, class: 'card-link' %>
+        <%= link_to file.file_name, attachment_path(file), class: 'card-link' %>
       </small>
     <% end %>
 
