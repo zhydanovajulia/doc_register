@@ -10,7 +10,7 @@ class Document < ApplicationRecord
 
   def attachments= files
     Array.wrap(files).each do |f|
-      self.attachments << Attachment.new(data: f)
+      attachments << Attachment.new(data: f)
     end
   end
 
