@@ -5,6 +5,17 @@ FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "qwe#{n}@qwe.qwe" }
     password { "epyfnm" }
+
+    transient do
+      doc_count { 5 }
+    end
+
+    factory :user_with_documents do
+
+       after(:create) do |user, evaluator|
+        create_list(:document_with_pdf_attachment, evaluator.doc_count, user: user)
+      end
+    end
   end
 
   factory :document do

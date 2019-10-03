@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   validates :email, presence: true
 
-  has_many :documents
+  has_many :documents, dependent: :destroy
 end
