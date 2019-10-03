@@ -5,7 +5,7 @@ class DocumentsController < ApplicationController
   def create
     @document = current_user.documents.new permit_params
     if @document.save
-      redirect_to documents_path
+      redirect_to @document
     else
       render :new
     end
@@ -13,7 +13,7 @@ class DocumentsController < ApplicationController
 
   def update
     if @document.update permit_params
-      redirect_to document_path @document
+      redirect_to @document
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class DocumentsController < ApplicationController
 
   def destroy
     @document.destroy
-    redirect_to documents_path
+    redirect_to documents_url
   end
 
   private
