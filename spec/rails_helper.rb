@@ -44,11 +44,16 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
+FactoryBot::SyntaxRunner.class_eval do
+  include ActionDispatch::TestProcess
+end
+
 RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
 
   config.include Features::SessionHelpers, type: :feature
+  config.include Features::DocumentHelpers, type: :feature
 
   config.after do |example|
     if example.metadata[:type] == :feature
@@ -62,8 +67,21 @@ RSpec.configure do |config|
   end
 
   Capybara.javascript_driver = :selenium_chrome_headless
+  # Capybara.javascript_driver = :selenium
 
-  config.use_transactional_fixtures = true
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
+
+  config.use_transactional_fixtures = false
 
 
   # RSpec Rails can automatically mix in different behaviours to your tests
