@@ -1,5 +1,5 @@
 <h3 class='border-bottom pb-2 mb-4'>
-  <%= @document.persisted? ? "Edit \"#{@document.name}\"" : 'New Document' %>
+  <%= @document.persisted? ? "Edit Document" : 'New Document' %>
 </h3>
 
 <%= form_with model: @document, local: true do |f| %>

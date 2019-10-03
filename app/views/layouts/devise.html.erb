@@ -10,13 +10,6 @@
   </head>
 
   <body>
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <%= link_to "Documents Register", documents_path, class: "navbar-brand" %>
 
@@ -37,6 +30,8 @@
         </span>
       </div>
     </nav>
+
+    <%= render 'application/notice_alert'%>
 
     <div class="container">
       <div class="row justify-content-md-center">

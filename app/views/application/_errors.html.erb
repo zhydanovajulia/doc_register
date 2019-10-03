@@ -1,8 +1,8 @@
 
 <% if obj.errors.any? %>
-  <ul class="form-errors">
+  <ul class="list-group">
     <% obj.errors.full_messages.each do |msg| %>
-      <li class="red"><%= msg %></li>
+      <li class="red border-none list-group-item-danger list-group-item"><%= msg %></li>
     <% end %>
   </ul>
 <% end %>
