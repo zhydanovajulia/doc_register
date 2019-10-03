@@ -9,7 +9,7 @@ class Document < ApplicationRecord
   validates_presence_of :description
 
   def attachments= files
-    files.each do |f|
+    Array.wrap(files).each do |f|
       self.attachments << Attachment.new(data: f)
     end
   end
