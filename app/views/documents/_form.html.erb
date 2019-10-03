@@ -20,8 +20,8 @@
     <%= f.text_area :description, class: "form-control" %>
   </div>
 
-  <% if @document.attachments.any? %>
-    <%= f.collection_check_boxes(:remove_files, @document.attachments.select(&:valid?), :id, :file_name) do |a|%>
+  <% if @document.valid_attachments.any? %>
+    <%= f.collection_check_boxes(:remove_files, @document.valid_attachments, :id, :file_name) do |a|%>
       <div class="input-group mb-3">
         <div class="btn-group-toggle" data-toggle="buttons">
           <label class="btn btn-outline-danger rounded-circle">

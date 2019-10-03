@@ -8,6 +8,10 @@ class Document < ApplicationRecord
   validates_presence_of :title
   validates_presence_of :description
 
+  def valid_attachments
+    attachments.select(&:valid?)
+  end
+
   def attachments= files
     Array.wrap(files).each do |f|
       attachments << Attachment.new(data: f)
