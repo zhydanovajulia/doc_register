@@ -10,27 +10,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <%= link_to "Documents Register", documents_path, class: "navbar-brand" %>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-          </li>
-        </ul>
-        <span class="navbar-text">
-          <% if current_user %>
-            <%= link_to "Sign out", destroy_user_session_path, class: "dropdown-item", method: :delete %>
-          <% else %>
-            <%= link_to "Sign in", new_user_session_path, class: "dropdown-item" %>
-          <% end %>
-        </span>
-      </div>
-    </nav>
-
+    <%= render 'application/navbar'%>
     <%= render 'application/notice_alert'%>
 
     <div class="container">
