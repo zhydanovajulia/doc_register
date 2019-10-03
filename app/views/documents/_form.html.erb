@@ -1,19 +1,22 @@
+<h3 class='border-bottom pb-2 mb-4'>
+  <%= @document.persisted? ? "Edit \"#{@document.name}\"" : 'New Document' %>
+</h3>
 
 <%= form_with model: @document, local: true do |f| %>
 
   <%= render 'application/errors', obj: @document %>
 
   <div class="form-group">
-    <%= f.label :name, class: 'col-sm-2 control-label' %>
+    <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :title, class: 'col-sm-2 control-label' %>
+    <%= f.label :title %>
     <%= f.text_field :title, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :description, class: 'col-sm-2 control-label' %>
+    <%= f.label :description %>
     <%= f.text_area :description, class: "form-control" %>
   </div>
 
@@ -21,9 +24,9 @@
     <%= f.collection_check_boxes(:remove_files, @document.attachments, :id, :file_name) do |a|%>
       <div class="input-group mb-3">
         <div class="btn-group-toggle" data-toggle="buttons">
-          <label class="btn btn-light small">
+          <label class="btn btn-outline-danger rounded-circle">
             <%= a.check_box %>
-            Delete
+            X
           </label>
           <%= a.object.file_name %>
         </div>
@@ -32,11 +35,13 @@
  <% end %>
 
   <div class="form-group">
-    <%= f.label :attachments, "(jpg jpeg png doc docx pdf rtf)", class: 'col-sm-5 control-label' %>
     <%= f.file_field :attachments, multiple: true, class: "form-control-file" %>
+    <small>
+      <%= f.label :attachments, AttachmentUploader.extension_whitelist.join(', ') %>
+    </small>
   </div>
 
   <%= f.submit "Save", class: "btn btn-primary" %>
-  <%= link_to "Cancel", :back, class: "btn btn-secondary" %>
+  <%= link_to "Cancel", documents_path, class: "btn btn-secondary" %>
 
 <% end %>
