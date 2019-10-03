@@ -1,21 +1,21 @@
-<h3>My Documents</h3>
-<%= link_to "New Document", new_document_path, class: "nav-link" %>
+<h3 class='border-bottom pb-2 mb-4'>My Documents</h3>
+<%= link_to "New Document", new_document_path, class: "btn btn-light nav-link" %>
 <div class="list-group">
-
   <% @documents.each do |doc| %>
+    <div class='list-group-item'>
+      <div class='row'>
+        <div class="col-sm-5">
 
-    <div class="list-group-item">
+            <%= link_to doc.name.truncate(30), document_path(doc) %>
+        </div>
 
-      <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1"><%= link_to doc.name, document_path(doc) %></h5>
-          <p><%= doc.title %></p>
+        <div class="col-sm-5">
+          <%= doc.description.truncate(30) %>
+        </div>
+        <div class="col-sm-2">
           <small><%= doc.created_at %></small>
+        </div>
       </div>
-
-      <p class="mb-1"><%= doc.description[0..100] %></p>
-
-      <small></small>
     </div>
-
   <% end %>
 </div>
