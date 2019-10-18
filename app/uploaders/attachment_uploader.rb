@@ -11,10 +11,22 @@ class AttachmentUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg png doc docx pdf rtf)
   end
 
+  def check_extension_whitelist!(new_file)
+    extension = new_file.extension.to_s
+    file_name = new_file.filename
+    if extension_whitelist && !whitelisted_extension?(extension)
+      raise CarrierWave::IntegrityError, I18n.translate(:"errors.messages.extension_whitelist_error", filename: file_name, extension: new_file.extension.inspect, allowed_types: Array(extension_whitelist).join(", "))
+    end
+  end
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+
+  def size_range
+    1..5.megabytes
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

@@ -31,8 +31,16 @@
           <%= a.object.file_name %>
         </div>
       </div>
-   <% end %>
- <% end %>
+    <% end %>
+  <% end %>
+
+  <div class="pb-3">
+    <% @document.invalid_attachments.each do |attachment| %>
+      <p>
+        <%= render 'application/errors', obj: attachment %>
+      </p>
+    <% end %>
+  </div>
 
   <div class="form-group">
     <%= f.file_field :attachments, multiple: true, class: "form-control-file" %>

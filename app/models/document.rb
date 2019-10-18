@@ -12,9 +12,13 @@ class Document < ApplicationRecord
     attachments.select(&:valid?)
   end
 
+  def invalid_attachments
+    attachments.select { |a| !a.valid? }
+  end
+
   def attachments= files
-    Array.wrap(files).each do |f|
-      attachments << Attachment.new(data: f)
+    Array.wrap(files).each do |file|
+      self.attachments.build data: file
     end
   end
 
