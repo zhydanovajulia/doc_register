@@ -10,7 +10,7 @@ gem 'pg'
 
 gem 'devise'
 
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
